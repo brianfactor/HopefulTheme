@@ -46,6 +46,11 @@ body {
 	padding: 0;
 }
 
+#content {
+	margin: 1em 34% 0 7.6%;
+	width: 58.4%;
+}
+
 .container-bubble {
 	position: relative;
 	clear: both;
