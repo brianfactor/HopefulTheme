@@ -1,0 +1,11 @@
+Description: This theme is filled with hope, optimism, and space. It is designed to be lean and very simple, but also configurable. Widgetized areas galore!
+
+@TODO
+* Add support for colorizing the theme and changing background.
+* Social Media integration
+* Submenus
+* Test widgets
+* Add options for which widgets to display
+* Allow image uploading inside theme options (low priority)
+* Modify the comment form
+
