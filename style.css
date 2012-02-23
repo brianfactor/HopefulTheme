@@ -226,7 +226,7 @@ body {
 
 /** Homepage layout **/
 
-.home #secondary {
+.home #main #secondary {
 	width: 38%;
 	margin: 2%;
 	position: relative;

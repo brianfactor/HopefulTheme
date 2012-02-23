@@ -73,6 +73,8 @@ function hopeful_settings_page() { global $hopeful_header_settings;
 		// Special thanks to Matt at Webmaster Source for help with the image uploader
 		// http://www.webmaster-source.com/2010/01/08/using-the-wordpress-uploader-in-your-plugin-or-theme/
 		jQuery(document).ready(function() {
+			var img_uploaded;
+			
 			jQuery('#upload_logo_button').click(function() {
 				formfield = jQuery('#upload_logo').attr('name');
 				tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
@@ -120,7 +122,7 @@ function hopeful_settings_page() { global $hopeful_header_settings;
 			
 			<h3>Styles &amp; Colors</h3>
 			
-				<p>Select a pre-defined color theme from the list below:</p>	
+				<p>Select a pre-defined color theme from the list below:</p>
 				<select name="hopeful-color-stylesheet">
 					<?php $current_color = $hopeful_settings['color_stylesheet'];
 					

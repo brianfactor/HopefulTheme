@@ -42,6 +42,8 @@
 </head>
 
 <body <?php body_class(); ?>>
+
+<div id="page" class="hfeed">
 	<header id="branding" role="banner">
 
 			<hgroup style="display:none;">
@@ -72,5 +74,4 @@
 			</nav><!-- #access -->
 	</header><!-- #branding -->
 
-<div id="page" class="hfeed">
 	<div id="main">
