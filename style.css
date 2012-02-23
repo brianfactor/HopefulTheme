@@ -156,7 +156,7 @@ body {
 }
 
 #access .logo-container { /* A little bit bigger than the other menu items */
-	margin-top: -2em; /* cancels out the padding from body */
+	margin-top: -1.98em; /* cancels out the padding from body */
 	background: #ddd;
 	border-top-right-radius: 7px;
 	border-top-left-radius: 7px;
