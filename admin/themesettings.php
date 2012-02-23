@@ -25,19 +25,19 @@ function hopeful_options() {
 }
 add_action('admin_init', 'hopeful_options'); // If there are ever a whole lot of settings, we may not want to load them in every admin page.
 
-// Register scripts and styles for using the Wordpress Uploader:
-function wp_uploader_ldscripts() {
-	wp_enqueue_script('jquery');
-	wp_enqueue_script('thickbox');
-	wp_enqueue_script('media-upload');
-}
-function wp_uploader_ldstyles() {
-	wp_enqueue_style('thickbox');
-}
-if (isset($_GET['page']) && $_GET['page'] == 'hopefultheme-settings') { // If we're on the theme's option page, enque the scripts
-	add_action('admin_enqueue_scripts', 'wp_uploader_ldscripts');
-	add_action('admin_print_styles', 'wp_uploader_ldstyles');
-}
+	// Register scripts and styles for using the Wordpress Uploader:
+	function wp_uploader_ldscripts() {
+		wp_enqueue_script('jquery');
+		wp_enqueue_script('thickbox');
+		wp_enqueue_script('media-upload');
+	}
+	function wp_uploader_ldstyles() {
+		wp_enqueue_style('thickbox');
+	}
+	if (isset($_GET['page']) && $_GET['page'] == 'hopefultheme-settings') { // If we're on the theme's option page, enqueue the scripts
+		add_action('admin_enqueue_scripts', 'wp_uploader_ldscripts');
+		add_action('admin_print_styles', 'wp_uploader_ldstyles');
+	}
 
 /** Display the options page **/
 
@@ -73,19 +73,35 @@ function hopeful_settings_page() { global $hopeful_header_settings;
 		// Special thanks to Matt at Webmaster Source for help with the image uploader
 		// http://www.webmaster-source.com/2010/01/08/using-the-wordpress-uploader-in-your-plugin-or-theme/
 		jQuery(document).ready(function() {
-			var img_uploaded;
+			var img_field;
 			
 			jQuery('#upload_logo_button').click(function() {
 				formfield = jQuery('#upload_logo').attr('name');
 				tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
+				window.img_field = '#upload_logo';
+				return false;
+			});
+			
+			jQuery('#upload_favicon_button').click(function() {
+				formfield = jQuery('#upload_favicon').attr('name');
+				tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
+				window.img_field = '#upload_favicon';
+				return false;
+			});
+			
+			jQuery('#upload_bg_image_button').click(function() {
+				formfield = jQuery('#upload_bg_image').attr('name');
+				tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
+				window.img_field = '#upload_bg_image';
 				return false;
 			});
 			
 			window.send_to_editor = function(html) { // Overwrite default function
 				imgurl = jQuery('img',html).attr('src');
-				jQuery('#upload_logo').val(imgurl);
+				jQuery(window.img_field).val(imgurl);
 				tb_remove();
 			}
+			
 		});
 		// Now the question is how to do it if you have have more than one field...
 	</script>
@@ -107,7 +123,7 @@ function hopeful_settings_page() { global $hopeful_header_settings;
 				<h4>Site Header Logo</h4>
 					
 					<p>This logo goes in the top left corner and replaces your site title. Optimum size: 200x75 px. Other sizes will create inconsistent results. <br />
-					Leave this blank to just use the Site Title (which can be changed in <a href="/wp-admin/options-general.php">General Settings</a>). Make sure to click save after your upload.</p>
+					Leave this blank to just use the Site Title (which can be changed in <a href="<?php admin_url("options-general.php"); ?>" >General Settings</a>). Make sure to click save after your upload.</p>
 					<input id="upload_logo" type="text" placeholder="http://" name="hopeful-logo-url" size="50" value="<?php echo $hopeful_logo_url; ?>" />
 					<input id="upload_logo_button" class="button" type="button" value="Upload/Change Logo" />
 					
@@ -154,11 +170,12 @@ function hopeful_settings_page() { global $hopeful_header_settings;
 					<p>Secondary text color: <input type="text" name="secondary-txt-color" value="#BBB" /></p>
 					<p>Random background colors (seperate by comas): <input type="text" name="random-colors" size="50" /></p>
 				
-				<h4>Custom background.</h4>
+				<h4>Custom background</h4>
 				
 					<p>Choose an image to be the background. Leave blank to use the color from above.</p>
-						<input type="text" placeholder="http://" size="50" />
-					
+						<input id="upload_bg_image" type="text" name="bg-image" placeholder="http://" size="50" />
+						<input id="upload_bg_image_button" class="button" type="button" value="Upload/Change Background" />
+						
 					<p>background settings:<br />
 						<input type="checkbox" name="bg-repeat" value="true" /> Repeat image<br />
 						<input type="radio" name="bg-position" value="left top" /> Position at top left<br />
