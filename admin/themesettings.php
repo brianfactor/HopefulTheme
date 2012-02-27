@@ -52,8 +52,8 @@ function hopeful_settings_page() { global $hopeful_header_settings;
 		echo '<div id="message" class="updated"><p><strong>';
 
 		$hopeful_settings['color_stylesheet'] = $_POST['hopeful-color-stylesheet'];	// Shouldn't need sanitizing - selector
-		$hopeful_settings['logo_url'] = _hopeful_logo_sanitize( $_POST['hopeful-logo-url'] );
-		$hopeful_settings['favicon_url'] = _hopeful_logo_sanitize( $_POST['hopeful-favicon-url'] );
+		$hopeful_settings['logo_url'] = _img_url_sanitizer( $_POST['hopeful-logo-url'] );
+		$hopeful_settings['favicon_url'] = _img_url_sanitizer( $_POST['hopeful-favicon-url'] );
 
 		update_option('hopeful-header-settings', $hopeful_settings);
 		
@@ -206,7 +206,7 @@ function hopeful_settings_page() { global $hopeful_header_settings;
 
 /** Functions for sanitizing the input from the settings page **/
 
-function _hopeful_logo_sanitize( $logo_url ) {
+function _img_url_sanitizer( $logo_url ) {
 	if ( empty($logo_url) ) {
 		return '';
 	}
