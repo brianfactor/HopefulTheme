@@ -76,6 +76,13 @@ if ( function_exists('register_sidebar') ) {
 
 register_nav_menu( 'primary', 'Primary Header Navigation' );
 
+/* Register theme's javascript */
+function hopeful_effects_script() {
+	wp_register_script( 'hopeful-effects', get_template_directory_uri() . '/js/pageEffects.js', array('jquery') );
+	wp_enqueue_script( 'hopeful-effects' );
+}
+add_action('wp_enqueue_scripts', 'hopeful_effects_script');
+
 /* Functions used in a whole lot of pages */
 
 // Page Title - borrowed from twentyeleven.

@@ -5,7 +5,7 @@ Template Name: Front Page
 
 /*
  * Front Page template
- * This displays on the homepage when the user chooses for it to be a static page.
+ * This renders the homepage when the user chooses for it to be a static page.
  * 
  * @package HopefulTheme
  */

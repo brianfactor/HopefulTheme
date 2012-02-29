@@ -11,12 +11,12 @@ Tags: brian, simple, widgets, social media,
 
 @TODO
 * Add support for colorizing the theme and changing background.
-* Social Media integration
+* Social Media integration (but maybe this should just be a plugin...)
 * Submenus
 * Test widgets
 * Add options for which widgets to display
-* Allow image uploading inside theme options (low priority)
 * Modify the comment form
+* Try out some cool fonts (maybe make changing fonts an option)
 
 */
 
@@ -47,7 +47,9 @@ body {
 }
 
 #content {
+	position: relative;
 	margin: 1em 34% 0 7.6%;
+	padding-top: 1em;
 	width: 58.4%;
 }
 
@@ -80,28 +82,33 @@ body {
 	padding: 0;
 	margin: 0;
 }
-#access li {
+#access .menu-container ul.menu > li {
+	font-weight: bold;
 	float: left;
 	position: relative;
+	margin-right: 0.2em;
 }
 #access a {
 	color: #eee;
 	display: block;
-	line-height: 3.333em;
-	padding: 0 1.2125em;
+	line-height: 2em;
+	padding: 1.05em 1.33em 1em 1.33em;
 	text-decoration: none;
 }
 #access ul ul {
+	background: #ddd;
 	-moz-box-shadow: 0 3px 3px rgba(0,0,0,0.2);
 	-webkit-box-shadow: 0 3px 3px rgba(0,0,0,0.2);
 	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 	display: none;
-	float: left;
+	width: 17em;
 	margin: 0;
 	position: absolute;
 	top: 3.333em;
 	left: 0;
-	width: 188px;
 	z-index: 99999;
 }
 #access ul ul ul {
@@ -109,42 +116,55 @@ body {
 	top: 0;
 }
 #access ul ul a {
-	background: #f9f9f9;
 	color: #444;
-	font-size: 1.2em;
+	font-size: 0.8em;
 	height: auto;
 	line-height: 1.4em;
+}
+#access ul ul a:hover {
+	font-style: italic;
+	text-decoration: underline;
+}
+#access .menu-container ul.menu > li {
+	font-weight: bold;
+}
+
+#access ul.menu > li:hover > a {
+	color: #373737;
+	background: #ddd;
 	border-top-right-radius: 7px;
 	border-top-left-radius: 7px;
-}
-#access li:hover > a,
-#access ul ul :hover > a,
-#access a:focus {
-	background: #ddd;
-	border-radius: 7px;
 	padding-bottom: 1em;
 }
-#access li:hover > a,
-#access a:focus {
-	color: #373737;
-}
 #access ul li:hover > ul {
-	display: block;		/* Display submenu */
+	display: block;		/* Display submenu on hover*/
 }
 #access .current-menu-item > a,
 #access .current-menu-ancestor > a,
 #access .current_page_item > a,
 #access .current_page_ancestor > a,
-#access .current-menu-item > a:hover,
-#access .current-menu-ancestor > a:hover,
-#access .current_page_item > a:hover,
-#access .current_page_ancestor > a:hover,
-#access .current-search {
+#access ul li.current-menu-item > a:hover,
+#access ul li.current-menu-ancestor > a:hover,
+#access ul li.current_page_item > a:hover,
+#access ul li.current_page_ancestor > a:hover,
+#access ul li.current-search {
+	font-weight: bold;
 	background: white;
 	color: black;
-	padding-bottom: 3em;
 	border-top-right-radius: 7px;
 	border-top-left-radius: 7px;
+}
+#access ul li.current-menu-ancestor > ul {
+	background: white;
+}
+
+#access .menu-item-home.current-menu-item {
+	height: 3em;
+}
+#branding h1 {
+	color: #000;
+	font-size: 2.7em;
+	padding: 0.5em;
 }
 
 #access .current-search {
@@ -156,27 +176,32 @@ body {
 }
 
 #access .logo-container { /* A little bit bigger than the other menu items */
-	margin-top: -1.98em; /* cancels out the padding from body */
+	margin-top: -1.95em; /* cancels out the padding from body */
 	background: #ddd;
 	border-top-right-radius: 7px;
 	border-top-left-radius: 7px;
 }
 
-/* Singular navigation */
+/* Singular/Content navigation */
 #nav-single {
-	float: right;
-	position: relative;
-	top: -0.3em;
-	text-align: right;
+	font-size: 0.8em;
+	position: absolute;
+	width: 100%;
+	top: 0.5em;
 	z-index: 1;
 }
-#nav-single .nav-previous,
-#nav-single .nav-next {
-	float: none;
-	width: auto;
+#nav-single .nav-previous {
+	float: left;
+	width: 50%;
+	text-align: left;
 }
 #nav-single .nav-next {
-	padding-left: .5em;
+	float: right;
+	width: 50%;
+	text-align: right;
+}
+.paged #nav-above {
+	display: block;
 }
 
 /** Search form **/
@@ -304,7 +329,7 @@ footer #footer-center .widget {
 	margin: 1em 1%;
 }
 
-footer #footer-center .widget ul {
+footer #footer-center .widget ul, #features .widget ul {
 	padding-left: 1em;
 }
 

@@ -35,10 +35,13 @@
 	<!--[if lt IE 9]>
 	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script>
 	<![endif]-->
-	<?php // For threaded comments?
-	if ( is_singular() && get_option( 'thread_comments' ) )	wp_enqueue_script( 'comment-reply' ); ?>
+	<?php // For threaded comments when you hit "reply"?
+	if ( is_singular() && get_option( 'thread_comments' ) )	wp_enqueue_script( 'comment-reply' ); 
+	// enqueue fancy page effects ?>
 
 	<?php wp_head();?>
+	<script type="text/javascript">
+	</script>
 </head>
 
 <body <?php body_class(); ?>>
@@ -53,7 +56,7 @@
 			
 			<nav id="access" role="navigation">
 				
-				<div class="menu-container logo-container">
+				<div class="title-menu-container logo-container">
 					<ul class="menu">
 					<li class="menu-item menu-item-home <?php if(is_front_page()) echo 'current-menu-item current_page_item'; ?>">
 						<a href="<?php bloginfo('wpurl'); ?>">
@@ -62,7 +65,9 @@
 					</li></ul>
 				</div>
 				
-				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+				<div class="menu-container">
+					<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+				</div>
 				
 				<?php if (is_search()) {
 					echo '<header class="current-search">';
