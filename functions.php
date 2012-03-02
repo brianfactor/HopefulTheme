@@ -83,6 +83,17 @@ function hopeful_effects_script() {
 }
 add_action('wp_enqueue_scripts', 'hopeful_effects_script');
 
+/* Register button shortcode */
+function hopeful_button_shortcode ( $atts, $content='' ) {
+	extract( shortcode_atts(array("size" => "medium", "link" => "#"), $atts) );
+	$content = '<a class="button ' . $size . '" href="' . $link . '">' . $content . '</a>';
+	return $content;
+}
+add_shortcode('button', 'hopeful_button_shortcode');
+
+// Make text widgets parse for shortcodes (thanks, http://digwp.com/2010/03/shortcodes-in-widgets/)
+add_filter('widget_text', 'do_shortcode');
+
 /* Functions used in a whole lot of pages */
 
 // Page Title - borrowed from twentyeleven.
@@ -99,6 +110,8 @@ function twentyeleven_print_title() {
 	if ( $paged >= 2 || $page >= 2 )
 		echo ' | ' . sprintf( 'Page %s', max($paged, $page) );
 }
+
+// ** Get theme settings functions
 
 function favicon_url() {
 	global $theme_settings; // Array with all the theme settings

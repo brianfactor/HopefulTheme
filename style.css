@@ -147,7 +147,9 @@ body {
 #access ul li.current-menu-ancestor > a:hover,
 #access ul li.current_page_item > a:hover,
 #access ul li.current_page_ancestor > a:hover,
-#access ul li.current-search {
+#access ul li.current-search,
+#access ul.menu > li.current_page_ancestor:hover > a,
+#access ul.menu > li.current-menu-ancestor:hover > a {
 	font-weight: bold;
 	background: white;
 	color: black;
@@ -359,4 +361,25 @@ footer#colophon a {
 footer#colophon h2 {
 	font-weight: bold;
 	font-size: 17px;
+}
+
+/** Extras **/
+
+/* button shortcode styling - maybe this should be a seperate stylesheet? */
+
+a.button {
+	background: #1982D1;
+	color: #fff;
+	opacity: 0.8;
+	font-size: 1.2em;
+	text-decoration: none;
+	border-radius: 11px;
+	margin: 2px;
+	border: 1px solid #C4D0F7;
+	border-bottom-color: #1E5B91;
+	padding: 0.1em 0.5em;
+}
+a.button:hover {
+	background: #2371AB;
+	text-decoration: none;
 }
