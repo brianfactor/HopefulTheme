@@ -5,6 +5,10 @@
  *
  * @package HopefulTheme
  */
+
+ // Theme settings
+ global $theme_settings; // Retrieved in functions.php
+ 
 ?>
 <!DOCTYPE html>
 <!--[if IE 6]>
@@ -36,12 +40,20 @@
 	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script>
 	<![endif]-->
 	<?php // For threaded comments when you hit "reply"?
-	if ( is_singular() && get_option( 'thread_comments' ) )	wp_enqueue_script( 'comment-reply' ); 
-	// enqueue fancy page effects ?>
+	if ( is_singular() && get_option( 'thread_comments' ) )	wp_enqueue_script( 'comment-reply' ); ?>
 
-	<?php wp_head();?>
+	<!-- Custom code from the theme admin --> 
 	<script type="text/javascript">
+// Use this usually for analytics code and the like
+<?php echo $theme_settings['custom_js']; ?>
 	</script>
+	<style type="text/css">
+/* Use this one for custom styles */
+<?php echo $theme_settings['custom_css']; ?>
+	</style>
+	
+	<!-- begin wp head -->
+	<?php wp_head();?>
 </head>
 
 <body <?php body_class(); ?>>
@@ -49,34 +61,34 @@
 <div id="page" class="hfeed">
 	<header id="branding" role="banner">
 
-			<hgroup style="display:none;">
-				<h1 id="site-title"><span><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></span></h1>
-				<h2 id="site-description"><?php bloginfo( 'description' ); ?></h2>
-			</hgroup>
+		<hgroup style="display:none;">
+			<h1 id="site-title"><span><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></span></h1>
+			<h2 id="site-description"><?php bloginfo( 'description' ); ?></h2>
+		</hgroup>
+		
+		<nav id="access" role="navigation">
 			
-			<nav id="access" role="navigation">
-				
-				<div class="title-menu-container logo-container">
-					<ul class="menu">
-					<li class="menu-item menu-item-home <?php if(is_front_page()) echo 'current-menu-item current_page_item'; ?>">
-						<a href="<?php bloginfo('wpurl'); ?>">
-							<?php site_logo(); ?>
-						</a>
-					</li></ul>
-				</div>
-				
-				<div class="menu-container">
-					<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-				</div>
-				
-				<?php if (is_search()) {
-					echo '<header class="current-search">';
-					get_search_form();
-					echo '</header>'; 
-				} else {
-					get_search_form();
-				}?>
-			</nav><!-- #access -->
+			<div class="title-menu-container logo-container">
+				<ul class="menu">
+				<li class="menu-item menu-item-home <?php if(is_front_page()) echo 'current-menu-item current_page_item'; ?>">
+					<a href="<?php bloginfo('wpurl'); ?>">
+						<?php site_logo(); ?>
+					</a>
+				</li></ul>
+			</div>
+			
+			<div class="menu-container">
+				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+			</div>
+			
+			<?php if (is_search()) {
+				echo '<header class="current-search">';
+				get_search_form();
+				echo '</header>'; 
+			} else {
+				get_search_form();
+			}?>
+		</nav><!-- #access -->
 	</header><!-- #branding -->
 
 	<div id="main">

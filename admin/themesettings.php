@@ -9,7 +9,6 @@
 function hopeful_options_page() {
 	// Create the settings page
 	add_submenu_page( 'themes.php', 'HopefulTheme Customization', 'Hopeful Settings', 'edit_theme_options', 'hopefultheme-settings',  'hopeful_settings_page');
-	return;
 }
 add_action('admin_menu', 'hopeful_options_page');
 
@@ -21,7 +20,6 @@ function hopeful_options() {
 		'color_stylesheet'	=> ''
 	);
 	add_option('hopeful-header-settings', $default_hopeful_settings);
-	return;
 }
 add_action('admin_init', 'hopeful_options'); // If there are ever a whole lot of settings, we may not want to load them in every admin page.
 
@@ -71,8 +69,9 @@ function hopeful_settings_page() { global $hopeful_header_settings;
 			$hopeful_settings['bg_repeat'] = $_POST['bg-repeat'];
 		else
 			$hopeful_settings['bg_repeat'] = "";
-		// Advanced CSS
+		// Advanced Code
 		$hopeful_settings['custom_css'] = $_POST['custom-css'];
+		$hopeful_settings['custom_js'] = $_POST['custom-js'];
 		
 		$hopeful_settings = array_merge($old_hopeful_settings,$hopeful_settings);	// To preserve old array values. In case of value conflict, second array overrides.
 		update_option('hopeful-header-settings', $hopeful_settings);
@@ -193,13 +192,17 @@ function hopeful_settings_page() { global $hopeful_header_settings;
 				<h4>Custom colors</h4>
 				
 					<p>Background color: <input type="text" name="bg-color" 
-						value="<?php if( isset($hopeful_settings['bg_color']) ) echo $hopeful_settings['bg_color']; else echo '#000000'; ?>" /></p>
+						value="<?php if( isset($hopeful_settings['bg_color']) ) echo $hopeful_settings['bg_color']; else echo '000000'; ?>" /></p>
 					<p>Main background color: <input type="text" name="main-bg-color" 
-						value="<?php if( isset($hopeful_settings['main_bg_color']) ) echo $hopeful_settings['main_bg_color']; else echo '#ffffff'; ?>" /></p>
-					<p>Main text color: <input type="text" name="main-txt-color" value="#000000" /></p>
-					<p>Secondary background color: <input type="text" name="second-bg-color" value="#DDD" /></p>
-					<p>Secondary text color: <input type="text" name="secondary-txt-color" value="#BBB" /></p>
-					<p>Random background colors (seperate by comas): <input type="text" name="random-colors" size="50" /></p>
+						value="<?php if( isset($hopeful_settings['main_bg_color']) ) echo $hopeful_settings['main_bg_color']; else echo 'ffffff'; ?>" /></p>
+					<p>Main text color: <input type="text" name="main-txt-color" 
+						value="000000" /></p>
+					<p>Secondary background color: <input type="text" name="second-bg-color" 
+						value="DDD" /></p>
+					<p>Secondary text color: <input type="text" name="secondary-txt-color" 
+						value="BBB" /></p>
+					<p>Random background colors (seperate by comas): <input type="text" name="random-colors" size="50"
+						value="000" /></p>
 				
 				<h4>Custom background</h4>
 				
@@ -229,10 +232,15 @@ function hopeful_settings_page() { global $hopeful_header_settings;
 				<p>/// Some options for which widget areas to display ///</p>
 				<p><a href="<?php echo admin_url("options-reading.php");_?>">Change homepage between static and blog</a>.</p>
 				
-			<h3>Advanced: Custom CSS</h3>
+			<h3>Advanced: Custom Code</h3>
 				
+				<h4>Custom CSS</h4>
 				<p>If you are not satisfied by what you can change with the settings above, you can use CSS. If you find you need more than a few lines, I recommend adding a stylesheet to colors/ or making a <a href="http://codex.wordpress.org/Child_Themes">child theme</a>.</p>
-				<textarea rows="10" cols="100" name="custom-css"></textarea>
+				<textarea rows="10" cols="100" name="custom-css"><?php echo $hopeful_settings['custom_css']; ?></textarea>
+				
+				<h4>Custom Javascript</h4>
+				<p>Here's where custom Js code (like <a href="http://www.google.com/analytics/">Google Analytics</a>) can be inserted into the header.</p>
+				<textarea rows="10" cols="100" name="custom-js"><?php echo $hopeful_settings['custom_js']; ?></textarea>
 				
 			<p class="submit">
                 <input type="submit" class="button-primary" value="Save Settings" />
@@ -270,4 +278,10 @@ function _img_url_sanitizer( $logo_url ) {
 }
 }
 
+if ( !function_exists('_sanitize_color') ) {
+function _sanitize_color($input) {
+	$output=$input;
+	return $output;
+} 
+}
 ?>
