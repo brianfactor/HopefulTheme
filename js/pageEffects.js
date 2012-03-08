@@ -7,16 +7,16 @@
 jQuery(document).ready( function() {
 /* animate the menu */
 jQuery(".menu-container ul.menu > li").mouseenter(function() {
-	jQuery(this).animate( {marginTop:"-0.5em"} );
+	jQuery(this).animate( {marginTop:"-5px"} );
 });
 jQuery(".menu-container ul.menu > li").mouseleave( function() {
 	jQuery(this).animate( {marginTop:"0"} );
 });
-/* animate the buttons */
+/* animate the buttons
 jQuery(".button").mouseenter( function() {
 	jQuery(this).animate( {opacity: 1, paddingTop:"0.5em", paddingBottom:"0.5em"}, 170 );
 });
 jQuery(".button").mouseleave( function() {
 	jQuery(this).animate( {opacity: 0.8, paddingTop:"0.1em", paddingBottom:"0.1em"}, 170 );
-});
+}); */
 });

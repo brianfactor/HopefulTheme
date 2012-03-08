@@ -59,9 +59,6 @@ footer, header, hgroup, menu, nav, section {
 /* =Structure
 ----------------------------------------------- */
 
-body {
-	padding: 0 2em;
-}
 #primary {
 	float: left;
 	margin: 0 -26.4% 0 0;
@@ -224,9 +221,6 @@ body, input, textarea {
 	font-weight: 300;
 	line-height: 1.625;
 }
-body {
-	background: #e2e2e2;
-}
 
 /* Headings */
 h1,h2,h3,h4,h5,h6 {
@@ -356,17 +350,6 @@ input[type=text] {
 	padding: 3px;
 }
 
-/* Links */
-a {
-	color: #1982d1;
-	text-decoration: none;
-}
-a:focus,
-a:active,
-a:hover {
-	text-decoration: underline;
-}
-
 /* Assistive text */
 .assistive-text {
 	position: absolute !important;
@@ -389,10 +372,6 @@ a:hover {
 /* =Content
 ----------------------------------------------- */
 
-#main {
-	clear: both;
-	padding: 1.625em 0 0;
-}
 .page-title {
 	color: #666;
 	font-size: 10px;
@@ -1078,15 +1057,6 @@ blockquote.pull {
 .widget ul li {
 	color: #777;
 	font-size: 13px;
-}
-.widget a {
-	font-weight: bold;
-	text-decoration: none;
-}
-.widget a:hover,
-.widget a:focus,
-.widget a:active {
-	text-decoration: underline;
 }
 
 /* Search Widget */

@@ -11,39 +11,70 @@ Tags: brian, simple, widgets, social media,
 
 @TODO
 * Add support for colorizing the theme and changing background.
+* Try out some cool fonts (maybe make changing fonts an option)
 * Social Media integration (but maybe this should just be a plugin...)
-* Submenus
 * Test widgets
 * Add options for which widgets to display
 * Modify the comment form
-* Try out some cool fonts (maybe make changing fonts an option)
+* Test IE compadibilty
 
 */
 
 /* Include stuff from from twentyeleven. */
 @import url("./te-include.css");
 
+/** Elements styling **/
+
+a {
+	color: #999;
+	text-decoration: none;
+}
+
+a:hover, a:focus, a:active {
+	color: #1982d1;
+	text-decoration: underline;
+}
+
+html {
+	padding: 0;
+	margin: 0;
+}
+
 /** General Block styling **/
 
 body {
 	background: #000;
-	padding: 2em;
+	padding: 0 2em;
+	margin: 0;
+	top: 0;
+	border-top: 1px solid transparent; /* FF fix */
 }
 
 #branding {
-	position: relative;
-	height: 45px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 86px;
 	clear: both;
+	width: 100%;
 }
 
 #page {
+	display: block;
 	position: relative;
+	top: 0;
 	margin: 0 auto;
 	max-width: 1000px;
+	border-top: 1px solid transparent; /* FF fix */
 }
 
 #main {
+	position: relative;
+	margin-top: 0;
+	top: 75px;
+	margin-bottom: 75px;
 	padding: 0;
+	border-top: 1px solid transparent; /* FF fix */
 }
 
 #content {
@@ -58,23 +89,26 @@ body {
 	clear: both;
 	background: white;
 	border-radius: 7px;
+	border-top-left-radius: 0;
 }
 
 /** Branding/Navigation bar **/
 
 #access {
-	background: black;
 	clear: both;
 	display: block;
 	float: left;
 	margin: 0 auto;
 	width: 100%;
-	height: 45px;
+	height: 85px;
 }
 #access > div {
 	position: relative;
 	display: inline-block;
-	vertical-align: top;
+	vertical-align: bottom;
+}
+#access .menu-container {
+	height: 34px;
 }
 #access ul {
 	font-size: 13px;
@@ -90,16 +124,16 @@ body {
 }
 #access a {
 	color: #eee;
-	display: block;
+	/*display: block;*/
 	line-height: 2em;
 	padding: 1.05em 1.33em 1em 1.33em;
 	text-decoration: none;
 }
 #access ul ul {
 	background: #ddd;
-	-moz-box-shadow: 0 3px 3px rgba(0,0,0,0.2);
-	-webkit-box-shadow: 0 3px 3px rgba(0,0,0,0.2);
-	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0 3px 6px #555;
+	   -moz-box-shadow: 0 3px 6px #555;
+	        box-shadow: 0 3px 6px #555;
 	border-top-right-radius: 5px;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
@@ -107,7 +141,7 @@ body {
 	width: 17em;
 	margin: 0;
 	position: absolute;
-	top: 3.333em;
+	top: 30px;
 	left: 0;
 	z-index: 99999;
 }
@@ -124,9 +158,6 @@ body {
 #access ul ul a:hover {
 	font-style: italic;
 	text-decoration: underline;
-}
-#access .menu-container ul.menu > li {
-	font-weight: bold;
 }
 
 #access ul.menu > li:hover > a {
@@ -156,12 +187,29 @@ body {
 	border-top-right-radius: 7px;
 	border-top-left-radius: 7px;
 }
+#access ul.sub-menu li.current_page_item > a,
+#access ul.sub-menu li.current-menu-item > a:hover {
+	background: none;
+}
 #access ul li.current-menu-ancestor > ul {
 	background: white;
 }
-
 #access .menu-item-home.current-menu-item {
-	height: 3em;
+	background: white;
+	height: 80px;
+	border-top-right-radius: 7px;
+	border-top-left-radius: 7px;
+}
+#access ul .menu-item-home.current-menu-item:hover a {
+	background: white;
+}
+#access .title-menu-container li {
+	height: 80px;
+	border-top-right-radius: 7px;
+	border-top-left-radius: 7px;
+}
+#access .menu-item-home a {
+	padding: 0;
 }
 #branding h1 {
 	color: #000;
@@ -169,41 +217,24 @@ body {
 	padding: 0.5em;
 }
 
-#access .current-search {
-	position: absolute;
-	top: 0;
-	right: 0;
-	height: 50px;
-	width: 226px;
-}
-
 #access .logo-container { /* A little bit bigger than the other menu items */
-	margin-top: -1.95em; /* cancels out the padding from body */
 	background: #ddd;
 	border-top-right-radius: 7px;
 	border-top-left-radius: 7px;
+	height: 73px;
+	margin-top: 7px;
 }
 
-/* Singular/Content navigation */
-#nav-single {
-	font-size: 0.8em;
+#access .current-search {
+	background: #fff;
+	border-top-right-radius: 7px;
+	border-top-left-radius: 7px;
 	position: absolute;
-	width: 100%;
-	top: 0.5em;
-	z-index: 1;
-}
-#nav-single .nav-previous {
-	float: left;
-	width: 50%;
-	text-align: left;
-}
-#nav-single .nav-next {
-	float: right;
-	width: 50%;
-	text-align: right;
-}
-.paged #nav-above {
-	display: block;
+	bottom: 0;
+	right: 0;
+	padding: 5px;
+	height: 50px;
+	width: 226px;
 }
 
 /** Search form **/
@@ -214,8 +245,8 @@ body {
 
 #access .searchform {
 	position: absolute;
-	top: 3px;
-	right: 7px;
+	bottom: 16px;
+	right: 12px;
 	text-align: right;
 }
 #access .s {
@@ -241,6 +272,7 @@ body {
 #access .searchsubmit {
 	display: inline;
 	position: absolute;
+	font-size: 2px;
 	top: 8px;
 	right: 0;
 	background: url("images/search.png") no-repeat;
@@ -249,6 +281,28 @@ body {
 	border: none;
 	color: transparent;
 	cursor: pointer;
+}
+
+/* Singular/Content navigation */
+#nav-single {
+	font-size: 0.8em;
+	position: absolute;
+	width: 100%;
+	top: 0.5em;
+	z-index: 1;
+}
+#nav-single .nav-previous {
+	float: left;
+	width: 50%;
+	text-align: left;
+}
+#nav-single .nav-next {
+	float: right;
+	width: 50%;
+	text-align: right;
+}
+.paged #nav-above {
+	display: block;
 }
 
 /** Homepage layout **/
@@ -279,8 +333,11 @@ body {
 }
 
 .home #features .widget {
-	background: white;
 	display: inline-block;
+	background: white;
+	-webkit-box-shadow: 0 0 9px 1px #888;
+	   -moz-box-shadow: 0 0 9px 1px #888;
+	        box-shadow: 0 0 9px 1px #888;
 	margin: 1%;
 	width: 29%;
 	vertical-align: top;
@@ -309,7 +366,7 @@ h1.archive-title {
 /** Page Footer styling **/
 
 footer#colophon {
-	color: #bbb;
+	color: #aaa;
 	font-size: 12px;
 	line-height: 2.2em;
 	padding: 1em 0;
@@ -354,7 +411,6 @@ footer #footer-right {
 }
 
 footer#colophon a {
-	color: #bbb;
 	font-weight: bold;
 }
 
@@ -368,18 +424,48 @@ footer#colophon h2 {
 /* button shortcode styling - maybe this should be a seperate stylesheet? */
 
 a.button {
-	background: #1982D1;
+	background: #7FA3BE;
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#666', endColorstr='#ddd',GradientType=0 ); /* IE6-9 */
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#666), to(#ddd)); /* older webkit syntax */
+	background: -webkit-linear-gradient(#666, #ddd);
+	   background: -moz-linear-gradient(#666, #ddd);
+	     background: -o-linear-gradient(#666, #ddd);
+	-webkit-box-shadow: #555 0px 1px 12px;
+	   -moz-box-shadow: #555 0px 1px 12px;
+	        box-shadow: #555 0px 1px 12px;
 	color: #fff;
-	opacity: 0.8;
-	font-size: 1.2em;
+	font-size: 20px;
+	font-weight: bold;
 	text-decoration: none;
 	border-radius: 11px;
 	margin: 2px;
-	border: 1px solid #C4D0F7;
-	border-bottom-color: #1E5B91;
-	padding: 0.1em 0.5em;
+	padding: 0.3em 0.5em;
 }
 a.button:hover {
-	background: #2371AB;
+	background: #2C5B8E;
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#A9D3FA', endColorstr='#1982D4',GradientType=0 ); /* IE6-9 */
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#A9D3FA), to(#1982D4)); /* older webkit syntax */
+	background: -webkit-linear-gradient(#A9D3FA, #1982D4);
+	   background: -moz-linear-gradient(#A9D3FA, #1982D4);
+	     background: -o-linear-gradient(#A9D3FA, #1982D4);
 	text-decoration: none;
 }
+
+/* Style form input buttons like that, too.
+.searchform input.submit {
+	background: #2C5B8E;
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#A9D3FA', endColorstr='#1982D4',GradientType=0 ); /* IE6-9 */
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#A9D3FA), to(#1982D4)); /* older webkit syntax */
+	background: -webkit-linear-gradient(#A9D3FA, #1982D4);
+	   background: -moz-linear-gradient(#A9D3FA, #1982D4);
+	     background: -o-linear-gradient(#A9D3FA, #1982D4);
+	-webkit-box-shadow: #555 0px 1px 12px;
+	   -moz-box-shadow: #555 0px 1px 12px;
+	        box-shadow: #555 0px 1px 12px;
+	border-radius: 11px;
+	text-decoration: none;
+	border: none;
+	color: #fff;
+	margin: 2px;
+	padding: 0.3em 0.5em;
+}*/
